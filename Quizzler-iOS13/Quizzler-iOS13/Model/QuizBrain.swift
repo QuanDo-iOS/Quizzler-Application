@@ -25,6 +25,7 @@ struct QuizBrain {
         
     ]
     var numberQuestion = 0
+    var score = 0
     
     func checkAnswers(_ userAnswer : String) -> Bool {
         if quiz[numberQuestion].a == userAnswer {
@@ -39,6 +40,7 @@ struct QuizBrain {
             self.numberQuestion += 1
         } else {
             self.numberQuestion = 0
+            self.score = 0
         }
     }
     

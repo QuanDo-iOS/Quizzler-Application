@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
@@ -20,19 +21,24 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         updateQuestion()
         progressBar.progress = 0.0
+        scoreLabel.text = "Score : 0"
     }
     
     @IBAction func answerButton(_ sender: UIButton) {
         // assign user'answer equal to true/false
         let userAnswer = sender.currentTitle!
+        
         // check answer is true or false
         if quizBrain.checkAnswers(userAnswer) == true {
             sender.backgroundColor = UIColor.green
+            quizBrain.score += 1
         } else {
             sender.backgroundColor = UIColor.red
         }
+        
         // check the next lesson can perfrom ?
         quizBrain.switchNextQuestion()
+        
         // the time between the current question and next question
         Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateQuestion), userInfo: nil, repeats: false)
     }
@@ -42,6 +48,7 @@ class ViewController: UIViewController {
         trueButton.backgroundColor = UIColor.clear
         falseButton.backgroundColor = UIColor.clear
         progressBar.progress = quizBrain.getProgress()
+        scoreLabel.text = "Score : \(quizBrain.score)"
     }
 }
 
