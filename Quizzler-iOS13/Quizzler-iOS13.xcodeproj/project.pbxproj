@@ -90,12 +90,12 @@
 			children = (
 				AD4BDE4922D878BA005BA4CC /* AppDelegate.swift */,
 				AD4BDE4B22D878BA005BA4CC /* SceneDelegate.swift */,
+				04F6A414277B667E002AAE3C /* Model */,
 				04F6A412277B6641002AAE3C /* View */,
 				04F6A413277B6662002AAE3C /* Controller */,
 				AD4BDE5222D878BC005BA4CC /* Assets.xcassets */,
 				AD4BDE5422D878BC005BA4CC /* LaunchScreen.storyboard */,
 				AD4BDE5722D878BC005BA4CC /* Info.plist */,
-				04F6A414277B667E002AAE3C /* Model */,
 			);
 			path = "Quizzler-iOS13";
 			sourceTree = "<group>";

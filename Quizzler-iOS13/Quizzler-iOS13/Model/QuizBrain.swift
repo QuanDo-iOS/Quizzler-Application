@@ -26,7 +26,27 @@ struct QuizBrain {
     ]
     var numberQuestion = 0
     
-    func checkAnswers(_ userAnswer : String) {
-        
+    func checkAnswers(_ userAnswer : String) -> Bool {
+        if quiz[numberQuestion].a == userAnswer {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    mutating func switchNextQuestion() -> Void {
+        if self.numberQuestion + 1 < self.quiz.count {
+            self.numberQuestion += 1
+        } else {
+            self.numberQuestion = 0
+        }
+    }
+    
+    func getQuestionText() -> String {
+        return self.quiz[numberQuestion].q
+    }
+    
+    func getProgress() -> Float {
+        return Float(self.numberQuestion) / Float(self.quiz.count)
     }
 }

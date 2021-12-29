@@ -23,27 +23,25 @@ class ViewController: UIViewController {
     }
     
     @IBAction func answerButton(_ sender: UIButton) {
+        // assign user'answer equal to true/false
         let userAnswer = sender.currentTitle!
-        
-        quizBrain.checkAnswers(userAnswer)
-        if userAnswer == actualAnswer {
+        // check answer is true or false
+        if quizBrain.checkAnswers(userAnswer) == true {
             sender.backgroundColor = UIColor.green
         } else {
             sender.backgroundColor = UIColor.red
         }
-        if numberQuestion + 1 < quiz.count {
-            numberQuestion += 1
-        } else {
-            numberQuestion = 0
-        }
+        // check the next lesson can perfrom ?
+        quizBrain.switchNextQuestion()
+        // the time between the current question and next question
         Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateQuestion), userInfo: nil, repeats: false)
     }
     
     @objc func updateQuestion() -> Void {
-        questionLabel.text = quiz[numberQuestion].q
+        questionLabel.text = quizBrain.getQuestionText()
         trueButton.backgroundColor = UIColor.clear
         falseButton.backgroundColor = UIColor.clear
-        progressBar.progress = Float(numberQuestion) / Float(quiz.count)
+        progressBar.progress = quizBrain.getProgress()
     }
 }
 
